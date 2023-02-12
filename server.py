@@ -20,14 +20,13 @@ freezer = Freezer(app)
 @app.route('/')
 def index():
     # Articles are pages with a publication date
-    articles = (p for p in pages if 'published' in p.meta)
+    articles = (p for p in pages)
 
     # Show the 10 most recent articles, most recent first.
-    latest = sorted(articles, reverse=True,
-                    key=lambda p: p.meta['published'])
+    # latest = sorted(articles, reverse=True,
+                    # key=lambda p: p.meta['published'])
 
-    print (latest)
-    return render_template('index.html', articles=latest[:10])
+    return render_template('index.html', articles=list(articles))
 
 # URL Routing - Flat Pages
 # Retrieves the page path and
